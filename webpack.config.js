@@ -1,12 +1,18 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+const dev = process.env.NODE_ENV !== 'production';
+
+const outputDir = dev ? 'dist' : 'build';
+
 module.exports = {
   entry: './src/js/app.js',
   output: {
+    publicPath: '/',
+    path: path.resolve(__dirname, `${outputDir}`),
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
   },
+  mode: dev ? 'development' : 'production',
   module: {
     rules: [
       {
@@ -27,12 +33,13 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'dist'),
     host: 'localhost',
     port: '3000',
-    hot: true,
+    historyApiFallback: true,
   },
   devtool: 'cheap-module-eval-source-map',
   plugins: [new HtmlWebpackPlugin({
-    title: "Expensify App",
+    title: 'Expensify App',
     filename: 'index.html',
-    template: path.join(__dirname, '/dist/index.html')
+    template: path.resolve(__dirname, './src/index.html'),
+    inject: 'body',
   })],
 };
