@@ -5,14 +5,15 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 export default class ExpenseForm extends React.Component {
   state = {
-    description: '',
-    amount: '',
-    note: '',
-    createdAt: moment(),
+    description: this.props.expense ? this.props.expense.description : '',
+    amount: this.props.expense ? String(this.props.expense.amount/100) : '',
+    note: this.props.expense ? this.props.expense.note : '',
+    createdAt: this.props.expense ? moment(this.props.expense.createdAt) : moment(),
     calendarFocused: false,
     error: '',
   }
-  handleChange = (key, value) => this.setState(() => ({
+  
+   handleChange = (key, value) => this.setState(() => ({
     [key]: value,
   }));
 
@@ -49,13 +50,13 @@ export default class ExpenseForm extends React.Component {
             type="text"
             placeholder="Description"
             autoFocus
-            value={this.state.description}
+            defaultValue={this.state.description}
             onChange={(e) => this.handleChange('description', e.target.value)}
           />
           <input
             type="text"
             placeholder="Amount"
-            value={this.state.amount}
+            defaultValue={this.state.amount}
             onChange={(e) => {
               const re = /^\d+(\.\d{0,2})?$/gi;
               if(!e.target.value || e.target.value.match(re)) this.handleChange('amount', e.target.value)
@@ -71,7 +72,7 @@ export default class ExpenseForm extends React.Component {
           />
           <textarea
             placeholder="Add a note to your expense (optional)"
-            value={this.state.note}
+            defaultValue={this.state.note}
             onChange={(e) => this.handleChange('note', e.target.value)}
           />
           <button

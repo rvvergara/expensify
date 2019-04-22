@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {
-  addExpense,
+  addExpense, editExpense,
 } from './actions/expenses';
 import {
   setTextFilter,
@@ -18,6 +18,8 @@ const store = configureStore();
 store.dispatch(addExpense({
   amount: 4500,
   description: 'Water Bill',
+  createdAt: 1555992000000
+  ,
 }));
 
 store.dispatch(addExpense({
@@ -25,7 +27,7 @@ store.dispatch(addExpense({
   createdAt: 1000,
 }));
 
-store.dispatch(addExpense({
+const rent = store.dispatch(addExpense({
   amount: 109500,
   description: 'Rent',
 }));
@@ -33,7 +35,7 @@ store.dispatch(addExpense({
 const state = store.getState();
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 
-console.log(visibleExpenses);
+// console.log(visibleExpenses);
 
 const jsx = (
   <Provider store={store}><AppRouter /></Provider>
