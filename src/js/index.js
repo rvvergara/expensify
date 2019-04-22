@@ -29,7 +29,7 @@ store.dispatch(addExpense({
 
 store.dispatch(setTextFilter('water'));
 
-setTimeout(() => store.dispatch(setTextFilter('gas')), 2000);
+setTimeout(() => store.dispatch(setTextFilter('bill')), 2000);
 
 const state = store.getState();
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
