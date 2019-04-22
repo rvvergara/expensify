@@ -34,5 +34,4 @@ export {
   addExpense,
   editExpense,
   removeExpense,
-}
-;
+};
