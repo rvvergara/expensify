@@ -3,7 +3,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/js/playground/redux-expensify.js',
+  entry: './src/js/index.js',
   output: {
     filename: 'js/[name].bundle.js',
     publicPath: '/',
