@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setTextFilter } from '../actions/filters';
+import { setTextFilter, sortByAmount, sortByDate } from '../actions/filters';
 
 const ExpenseListFilters = ({ filters, dispatch }) => (
   <div>
@@ -11,6 +11,15 @@ const ExpenseListFilters = ({ filters, dispatch }) => (
         dispatch(setTextFilter(e.target.value));
       }}
     />
+    <select
+      value={filters.sortBy}
+      onChange={
+        e => (e.target.value === 'date' ? dispatch(sortByDate()) : (e.target.value === dispatch(sortByAmount())))
+      }
+    >
+      <option value="amount">Amount</option>
+      <option value="date">Date</option>
+    </select>
   </div>
 );
 
