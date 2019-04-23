@@ -50,13 +50,13 @@ export default class ExpenseForm extends React.Component {
             type="text"
             placeholder="Description"
             autoFocus
-            defaultValue={this.state.description}
+            value={this.state.description}
             onChange={(e) => this.handleChange('description', e.target.value)}
           />
           <input
             type="text"
             placeholder="Amount"
-            defaultValue={this.state.amount}
+            value={this.state.amount}
             onChange={(e) => {
               const re = /^\d+(\.\d{0,2})?$/gi;
               if(!e.target.value || e.target.value.match(re)) this.handleChange('amount', e.target.value)
@@ -72,7 +72,7 @@ export default class ExpenseForm extends React.Component {
           />
           <textarea
             placeholder="Add a note to your expense (optional)"
-            defaultValue={this.state.note}
+            value={this.state.note}
             onChange={(e) => this.handleChange('note', e.target.value)}
           />
           <button
