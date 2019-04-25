@@ -7,7 +7,7 @@ const getVisibleExpenses = (expenses, {
   const createAtMoment = moment(expense.createdAt);
   const startDateMatch = startDate ? startDate.isSameOrBefore(createAtMoment, 'day') : true;
   const endDateMatch = endDate ? endDate.isSameOrAfter(createAtMoment, 'day') : true;
-  const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+  const textMatch = text ? expense.description.toLowerCase().includes(text.toLowerCase()) : true;
   return startDateMatch && endDateMatch && textMatch;
 }).sort((a, b) => {
   if (sortBy === 'amount') return b[sortBy] - a[sortBy];
