@@ -1,3 +1,3 @@
-# React Boilerplate
+# Expensify
 
 ## Ryan Vergara
