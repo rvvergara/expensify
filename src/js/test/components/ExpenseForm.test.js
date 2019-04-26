@@ -61,4 +61,14 @@ describe('ExpenseForm', () => {
     expect(wrapper.state('amount')).toBe('');
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('should call onSubmit prop for valid form submission', () => {
+    const onSubmitSpy = jest.fn();
+    wrapper = shallow(<ExpenseForm expense={expenses[2]} onSubmit={onSubmitSpy} />);
+    wrapper.find('form').simulate('submit', {
+      preventDefault: () => {},
+    });
+    expect(wrapper.state('error')).toBe('');
+    expect(onSubmitSpy).toHaveBeenLastCalledWith({ ...expenses[2], id: undefined });
+  });
 });
