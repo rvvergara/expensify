@@ -9,7 +9,7 @@ describe('AddExpense', () => {
   let history;
   beforeEach(() => {
     addExpenseSpy = jest.fn();
-    history = [];
+    history = { push: jest.fn() };
     wrapper = shallow(<AddExpense addExpense={addExpenseSpy} history={history} />);
   });
 
@@ -19,11 +19,11 @@ describe('AddExpense', () => {
 
   test('addExpense should be called with expense item', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0]);
-    expect(addExpenseSpy).toHaveBeenCalledWith(expenses[0]);
+    expect(addExpenseSpy).toHaveBeenLastCalledWith(expenses[0]);
   });
 
-  test('history should have "/" as element', () => {
+  test('history push should have been called', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0]);
-    expect(history).toEqual(['/']);
+    expect(history.push).toHaveBeenLastCalledWith('/');
   });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
-import ExpenseForm from '../../components/ExpenseForm.js';
+import ExpenseForm from '../../components/ExpenseForm';
 import expenses from '../fixtures/expenses';
 
 describe('ExpenseForm', () => {
@@ -14,7 +14,7 @@ describe('ExpenseForm', () => {
   });
 
   test('should render ExpenseForm with expense data', () => {
-    const wrapper = shallow(<ExpenseForm expense={expenses[2]} />);
+    wrapper = shallow(<ExpenseForm expense={expenses[2]} />);
     expect(wrapper).toMatchSnapshot();
   });
 

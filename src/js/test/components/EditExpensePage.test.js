@@ -13,7 +13,7 @@ describe('EditExpense', () => {
   beforeEach(() => {
     editExpenseSpy = jest.fn();
     removeExpenseSpy = jest.fn();
-    history = [];
+    history = { push: jest.fn() };
     match = { params: { id: expenses[2].id } };
     updates = { description: 'Netflix' };
     wrapper = shallow(
@@ -31,23 +31,29 @@ describe('EditExpense', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('editExpenseSpy should have been called with id and update object', () => {
-    wrapper.find('ExpenseForm').prop('onSubmit')(updates);
-    expect(editExpenseSpy).toHaveBeenCalledWith(expenses[2].id, updates);
+  describe('editExpenseSpy', () => {
+    beforeEach(() => {
+      wrapper.find('ExpenseForm').prop('onSubmit')(updates);
+    });
+    test('editExpenseSpy should have been called with id and update object', () => {
+      expect(editExpenseSpy).toHaveBeenLastCalledWith(expenses[2].id, updates);
+    });
+
+    test('history.push to have been called last with "/" after form submit', () => {
+      expect(history.push).toHaveBeenLastCalledWith('/');
+    });
   });
 
-  test('"/" should be added to history upon form submit', () => {
-    wrapper.find('ExpenseForm').prop('onSubmit')(updates);
-    expect(history).toEqual(['/']);
-  });
+  describe('removeExpenseSpy', () => {
+    beforeEach(() => {
+      wrapper.find('button').simulate('click');
+    });
+    test('removeExpenseSpy should have been called with expense id', () => {
+      expect(removeExpenseSpy).toHaveBeenLastCalledWith({ id: expenses[2].id });
+    });
 
-  test('removeExpenseSpy should have been called with expense id', () => {
-    wrapper.find('button').at(0).prop('onClick')();
-    expect(removeExpenseSpy).toHaveBeenCalledWith({ id: expenses[2].id });
-  });
-
-  test('"/" should be added to history upon clicking delete button', () => {
-    wrapper.find('button').at(0).prop('onClick')();
-    expect(history).toEqual(['/']);
+    test('history.push to have been called last with "/" after clicking remove', () => {
+      expect(history.push).toHaveBeenLastCalledWith('/');
+    });
   });
 });

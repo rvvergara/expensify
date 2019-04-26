@@ -9,14 +9,15 @@ export const EditExpense = (props) => {
     expense, editExpense, removeExpense, history, match,
   } = props;
   const { id } = match.params;
+  const onSubmit = (updates) => {
+    editExpense(id, updates);
+    history.push('/');
+  };
   return (
     <div>
       <ExpenseForm
         expense={expense}
-        onSubmit={(updates) => {
-          editExpense(id, updates);
-          history.push('/');
-        }}
+        onSubmit={onSubmit}
       />
       <button
         type="button"
