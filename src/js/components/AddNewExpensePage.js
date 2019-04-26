@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addExpense } from '../actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
@@ -14,5 +15,10 @@ export const AddExpense = props => (
     />
   </div>
 );
+
+AddExpense.propTypes = {
+  addExpense: PropTypes.func.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default connect(null, { addExpense })(AddExpense);
