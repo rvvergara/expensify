@@ -11,6 +11,7 @@ import {
 } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
+import 'react-dates/lib/css/_datepicker.css';
 import '../scss/style.scss';
 
 const store = configureStore();
