@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 import ExpenseForm from '../../components/ExpenseForm.js';
 import expenses from '../fixtures/expenses';
 
@@ -70,5 +71,16 @@ describe('ExpenseForm', () => {
     });
     expect(wrapper.state('error')).toBe('');
     expect(onSubmitSpy).toHaveBeenLastCalledWith({ ...expenses[2], id: undefined });
+  });
+
+  test('should set date on date change', () => {
+    const now = moment();
+    wrapper.find('withStyles(SingleDatePicker)').prop('onDateChange')(moment());
+    expect(wrapper.state('createdAt')).toEqual(now);
+  });
+
+  test('should set calendar focus on change', () => {
+    wrapper.find('withStyles(SingleDatePicker)').prop('onFocusChange')({ focused: true });
+    expect(wrapper.state('calendarFocused')).toBe(true);
   });
 });
