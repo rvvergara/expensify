@@ -1,24 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editExpense, removeExpense } from '../actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
-const EditExpense = (props) => {
-  const { id } = props.match.params;
-  const { expense, dispatch, history } = props;
+export const EditExpense = (props) => {
+  const {
+    expense, editExpense, removeExpense, history, match,
+  } = props;
+  const { id } = match.params;
   return (
     <div>
       <ExpenseForm
         expense={expense}
         onSubmit={(updates) => {
-          dispatch(editExpense(id, updates));
+          editExpense(id, updates);
           history.push('/');
         }}
       />
       <button
         type="button"
         onClick={() => {
-          dispatch(removeExpense({ id }));
+          removeExpense({ id });
           history.push('/');
         }}
       >
@@ -33,4 +36,17 @@ const mapStateToProps = (state, props) => ({
     x.id === props.match.params.id)),
 });
 
-export default connect(mapStateToProps)(EditExpense);
+const mapDispatchToProps = dispatch => ({
+  editExpense: (id, updates) => dispatch(editExpense(id, updates)),
+  removeExpense: ({ id }) => dispatch(removeExpense({ id })),
+});
+
+EditExpense.propTypes = {
+  expense: PropTypes.instanceOf(Object).isRequired,
+  editExpense: PropTypes.func.isRequired,
+  removeExpense: PropTypes.func.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
+  match: PropTypes.instanceOf(Object).isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpense);
