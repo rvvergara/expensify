@@ -36,7 +36,7 @@ describe('ExpenseListFilters', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('should handle test change', () => {
+  test('should handle text change', () => {
     const value = 'water';
     wrapper.find('input').at(0).simulate('change', {
       target: { value },
