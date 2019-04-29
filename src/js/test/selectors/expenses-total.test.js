@@ -3,7 +3,7 @@ import expenses from '../fixtures/expenses';
 
 describe('getExpensesTotal', () => {
   test('should return 0 if no expenses', () => {
-    expect(getExpensesTotal()).toBe(0);
+    expect(getExpensesTotal([])).toBe(0);
   });
 
   test('should add up correctly a single expense', () => {
