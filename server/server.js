@@ -6,4 +6,8 @@ const publicPath = path.resolve(__dirname, '../build');
 
 app.use(express.static(publicPath));
 
-app.listen(3000, () => console.log('Server started'));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(publicPath, 'index.html'));
+});
+
+app.listen(8000, () => console.log('Server started'));
