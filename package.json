@@ -5,7 +5,7 @@
   "author": "RyanV <6015315+rvvergara@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config config/webpack.prod.js",
+    "build": "webpack -p --config config/webpack.prod.js",
     "start": "webpack-dev-server --config config/webpack.dev.js",
     "dev": "webpack --config config/webpack.dev.js",
     "test": "jest --config jest.config.json"
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.3",
+    "express": "^4.16.4",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.6.0",
     "moment": "^2.24.0",
