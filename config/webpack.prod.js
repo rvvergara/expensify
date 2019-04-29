@@ -7,4 +7,5 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, '../build'),
   },
+  devtool: 'source-map',
 });
