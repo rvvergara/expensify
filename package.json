@@ -43,6 +43,7 @@
     "mini-css-extract-plugin": "^0.6.0",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
+    "numeral": "^2.0.6",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "prop-types": "^15.7.2",
     "raf": "^3.4.1",
