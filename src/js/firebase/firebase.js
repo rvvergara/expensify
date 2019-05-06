@@ -14,21 +14,44 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().set({
-  name: 'RyanV',
-  age: 39,
-  isMarried: true,
-  location: {
-    city: 'Bacoor City',
-    country: 'Philippines',
-  },
+// database.ref('expenses').push({
+//   description: 'Food',
+//   amount: 6514,
+//   createdAt: 6554117,
+//   note: 'Lunch',
+// });
+
+database.ref('expenses').on('child_removed', (snapshot) => {
+  console.log(snapshot.key, snapshot.val());
 });
 
-// database.ref().set('This is my data');
+database.ref('expenses').on('child_changed', snapshot => console.log(snapshot.key, snapshot.val()));
 
-database.ref('age').set(40);
-database.ref('location/city').set('Manila');
-database.ref('attributes').set({
-  hobbies: ['reading', 'sports', 'coding'],
-  height: '5ft 3in',
-});
+// database.ref('expenses').on('child_added', snapshot => console.log(snapshot.key, snapshot.val()));
+
+// database.ref('expenses').push({
+//   description: 'Learning',
+//   amount: 22667,
+//   createdAt: 1125547,
+//   note: 'Books',
+// });
+
+database.ref('expenses/-LeAXpF4JifXvq-pCGaC').remove();
+
+// database.ref('expenses/-LeAXpF4JifXvq-pCGaC').update({
+//   description: 'Offering and gifts',
+// });
+
+// const onChange = (snapshot) => {
+//   const expenses = [];
+//   snapshot.forEach((childSnapshot) => {
+//     expenses.push({
+//       id: childSnapshot.key,
+//       ...childSnapshot.val(),
+//     });
+//   });
+//   console.log(expenses);
+// };
+
+// database.ref('expenses')
+//   .on('value', onChange);
