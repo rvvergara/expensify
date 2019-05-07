@@ -5,8 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 if (process.env.NODE_ENV === 'test') {
   require('dotenv').config({ path: '.env.test' });
 } else if (process.env.NODE_ENV === 'development') {
