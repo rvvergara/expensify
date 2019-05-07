@@ -5,13 +5,13 @@ import expenses from '../fixtures/expenses';
 
 describe('EditExpense', () => {
   let wrapper;
-  let editExpenseSpy;
+  let startEditExpenseSpy;
   let startRemoveExpenseSpy;
   let history;
   let match;
   let updates;
   beforeEach(() => {
-    editExpenseSpy = jest.fn();
+    startEditExpenseSpy = jest.fn();
     startRemoveExpenseSpy = jest.fn();
     history = { push: jest.fn() };
     match = { params: { id: expenses[2].id } };
@@ -19,7 +19,7 @@ describe('EditExpense', () => {
     wrapper = shallow(
       <EditExpense
         expense={expenses[2]}
-        editExpense={editExpenseSpy}
+        startEditExpense={startEditExpenseSpy}
         startRemoveExpense={startRemoveExpenseSpy}
         history={history}
         match={match}
@@ -36,7 +36,7 @@ describe('EditExpense', () => {
       wrapper.find('ExpenseForm').prop('onSubmit')(updates);
     });
     test('editExpenseSpy should have been called with id and update object', () => {
-      expect(editExpenseSpy).toHaveBeenLastCalledWith(expenses[2].id, updates);
+      expect(startEditExpenseSpy).toHaveBeenLastCalledWith(expenses[2].id, updates);
     });
 
     test('history.push to have been called last with "/" after form submit', () => {

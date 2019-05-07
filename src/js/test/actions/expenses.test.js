@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
 
 import {
-  addExpense, editExpense, removeExpense, startAddExpense, setExpenses, startSetExpenses, startRemoveExpense,
+  addExpense, editExpense, removeExpense, startAddExpense, setExpenses, startEditExpense, startSetExpenses, startRemoveExpense,
 } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 
@@ -158,5 +158,25 @@ describe('startRemoveExpense', () => {
         });
       })
       .then(() => done());
+  });
+});
+
+describe('startEditExpense', () => {
+  test('it should change an expense in the database', (done) => {
+    const store = createMockStore({ expenses });
+    const { id } = expenses[1];
+    const updates = {
+      description: 'Education',
+    };
+    store.dispatch(startEditExpense(id, updates))
+      .then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+          type: 'EDIT_EXPENSE',
+          id,
+          updates,
+        });
+      })
+      .then(done());
   });
 });
