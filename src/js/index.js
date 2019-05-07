@@ -17,6 +17,7 @@ import './firebase/firebase';
 
 const store = configureStore();
 
+console.log(process.env.NODE_ENV);
 // store.dispatch(addExpense({
 //   amount: 4500,
 //   description: 'Water Bill',
