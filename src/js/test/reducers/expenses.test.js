@@ -39,4 +39,13 @@ describe('expenses reducer', () => {
   test('it should not change state when expense does not exist', () => {
     expect(expensesReducer(expenses, { type: 'REMOVE_EXPENSE', id: 5 })).toEqual(expenses);
   });
+
+  test('it should set expenses based on data passed', () => {
+    const action = {
+      type: 'SET_EXPENSES',
+      expenses,
+    };
+
+    expect(expensesReducer([], action)).toEqual(expenses);
+  });
 });
