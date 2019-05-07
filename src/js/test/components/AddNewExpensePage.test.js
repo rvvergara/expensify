@@ -5,12 +5,12 @@ import expenses from '../fixtures/expenses';
 
 describe('AddExpense', () => {
   let wrapper;
-  let addExpenseSpy;
+  let startAddExpenseSpy;
   let history;
   beforeEach(() => {
-    addExpenseSpy = jest.fn();
+    startAddExpenseSpy = jest.fn();
     history = { push: jest.fn() };
-    wrapper = shallow(<AddExpense addExpense={addExpenseSpy} history={history} />);
+    wrapper = shallow(<AddExpense startAddExpense={startAddExpenseSpy} history={history} />);
   });
 
   test('it should render AddExpense', () => {
@@ -19,7 +19,7 @@ describe('AddExpense', () => {
 
   test('addExpense should be called with expense item', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0]);
-    expect(addExpenseSpy).toHaveBeenLastCalledWith(expenses[0]);
+    expect(startAddExpenseSpy).toHaveBeenLastCalledWith(expenses[0]);
   });
 
   test('history push should have been called', () => {
