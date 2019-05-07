@@ -5,7 +5,7 @@
   "author": "RyanV <6015315+rvvergara@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack -p --config config/webpack.prod.js",
+    "build": "cross-env NODE_ENV=production webpack -p --config config/webpack.prod.js",
     "start": "webpack-dev-server --config config/webpack.dev.js",
     "dev": "webpack --config config/webpack.dev.js",
     "test": "cross-env NODE_ENV=test jest --config jest.config.json"
