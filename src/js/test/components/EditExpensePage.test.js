@@ -6,13 +6,13 @@ import expenses from '../fixtures/expenses';
 describe('EditExpense', () => {
   let wrapper;
   let editExpenseSpy;
-  let removeExpenseSpy;
+  let startRemoveExpenseSpy;
   let history;
   let match;
   let updates;
   beforeEach(() => {
     editExpenseSpy = jest.fn();
-    removeExpenseSpy = jest.fn();
+    startRemoveExpenseSpy = jest.fn();
     history = { push: jest.fn() };
     match = { params: { id: expenses[2].id } };
     updates = { description: 'Netflix' };
@@ -20,7 +20,7 @@ describe('EditExpense', () => {
       <EditExpense
         expense={expenses[2]}
         editExpense={editExpenseSpy}
-        removeExpense={removeExpenseSpy}
+        startRemoveExpense={startRemoveExpenseSpy}
         history={history}
         match={match}
       />,
@@ -49,7 +49,7 @@ describe('EditExpense', () => {
       wrapper.find('button').simulate('click');
     });
     test('removeExpenseSpy should have been called with expense id', () => {
-      expect(removeExpenseSpy).toHaveBeenLastCalledWith({ id: expenses[2].id });
+      expect(startRemoveExpenseSpy).toHaveBeenLastCalledWith({ id: expenses[2].id });
     });
 
     test('history.push to have been called last with "/" after clicking remove', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { editExpense, removeExpense } from '../actions/expenses';
+import { editExpense, startRemoveExpense } from '../actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
 
@@ -14,9 +14,9 @@ export class EditExpense extends React.Component {
   };
 
   onClick = () => {
-    const { match, history, removeExpense } = this.props;
+    const { match, history, startRemoveExpense } = this.props;
     const { id } = match.params;
-    removeExpense({ id });
+    startRemoveExpense({ id });
     history.push('/');
   }
 
@@ -49,13 +49,13 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
   editExpense: (id, updates) => dispatch(editExpense(id, updates)),
-  removeExpense: ({ id }) => dispatch(removeExpense({ id })),
+  startRemoveExpense: ({ id }) => dispatch(startRemoveExpense({ id })),
 });
 
 EditExpense.propTypes = {
   expense: PropTypes.instanceOf(Object).isRequired,
   editExpense: PropTypes.func.isRequired,
-  removeExpense: PropTypes.func.isRequired,
+  startRemoveExpense: PropTypes.func.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
 };
