@@ -17,25 +17,25 @@ import './firebase/firebase';
 
 const store = configureStore();
 
-store.dispatch(addExpense({
-  amount: 4500,
-  description: 'Water Bill',
-  createdAt: 1555992000000
-  ,
-}));
+// store.dispatch(addExpense({
+//   amount: 4500,
+//   description: 'Water Bill',
+//   createdAt: 1555992000000
+//   ,
+// }));
 
-store.dispatch(addExpense({
-  description: 'Gas Bill',
-  createdAt: 1000,
-}));
+// store.dispatch(addExpense({
+//   description: 'Gas Bill',
+//   createdAt: 1000,
+// }));
 
-const rent = store.dispatch(addExpense({
-  amount: 109500,
-  description: 'Rent',
-}));
+// const rent = store.dispatch(addExpense({
+//   amount: 109500,
+//   description: 'Rent',
+// }));
 
-const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+// const state = store.getState();
+// const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 
 // console.log(visibleExpenses);
 

@@ -14,6 +14,11 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
+export {
+  database as default,
+  firebase,
+};
+
 // database.ref('expenses').push({
 //   description: 'Food',
 //   amount: 6514,
@@ -21,11 +26,11 @@ const database = firebase.database();
 //   note: 'Lunch',
 // });
 
-database.ref('expenses').on('child_removed', (snapshot) => {
-  console.log(snapshot.key, snapshot.val());
-});
+// database.ref('expenses').on('child_removed', (snapshot) => {
+//   console.log(snapshot.key, snapshot.val());
+// });
 
-database.ref('expenses').on('child_changed', snapshot => console.log(snapshot.key, snapshot.val()));
+// database.ref('expenses').on('child_changed', snapshot => console.log(snapshot.key, snapshot.val()));
 
 // database.ref('expenses').on('child_added', snapshot => console.log(snapshot.key, snapshot.val()));
 
@@ -36,7 +41,7 @@ database.ref('expenses').on('child_changed', snapshot => console.log(snapshot.ke
 //   note: 'Books',
 // });
 
-database.ref('expenses/-LeAXpF4JifXvq-pCGaC').remove();
+// database.ref('expenses/-LeAXpF4JifXvq-pCGaC').remove();
 
 // database.ref('expenses/-LeAXpF4JifXvq-pCGaC').update({
 //   description: 'Offering and gifts',
