@@ -156,7 +156,9 @@ describe('startRemoveExpense', () => {
           type: 'REMOVE_EXPENSE',
           id: expenses[1].id,
         });
+        return database.ref(`expenses/${expenses[1].id}`).once('value');
       })
+      .then(snapshot => expect(snapshot.val()).toEqual(null))
       .then(() => done());
   });
 });
@@ -176,7 +178,11 @@ describe('startEditExpense', () => {
           id,
           updates,
         });
+        return database.ref(`expenses/${id}`).once('value');
       })
-      .then(done());
+      .then((snapshot) => {
+        expect(snapshot.val().description).toBe(updates.description);
+      })
+      .then(() => done());
   });
 });
