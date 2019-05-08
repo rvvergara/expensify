@@ -42,8 +42,9 @@ const startRemoveExpense = ({ id }) => (dispatch, getState) => {
   return database.ref(`users/${uid}/expenses/${id}`).remove()
     .then(() => {
       dispatch(removeExpense({ id }));
-    }) 
-;};
+    })
+  ; 
+};
 
 // EDIT_EXPENSE GENERATOR
 const editExpense = (id, updates) => ({
@@ -55,7 +56,7 @@ const editExpense = (id, updates) => ({
 // START_EDIT_EXPENSE
 const startEditExpense = (id, updates) => (dispatch, getState) => {
   const { uid } = getState().auth;
-  database.ref(`users/${uid}/expenses/${id}`).update(updates)
+  return database.ref(`users/${uid}/expenses/${id}`).update(updates)
     .then(() => {
       dispatch(editExpense(id, updates));
     });
