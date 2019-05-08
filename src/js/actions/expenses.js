@@ -37,10 +37,13 @@ const removeExpense = ({ id } = {}) => ({
 });
 
 // START_REMOVE EXPENSE
-const startRemoveExpense = ({ id }) => dispatch => database.ref(`expenses/${id}`).remove()
-  .then(() => {
-    dispatch(removeExpense({ id }));
-  });
+const startRemoveExpense = ({ id }) => (dispatch, getState) => {
+  const { uid } = getState().auth;
+  return database.ref(`users/${uid}/expenses/${id}`).remove()
+    .then(() => {
+      dispatch(removeExpense({ id }));
+    }) 
+;};
 
 // EDIT_EXPENSE GENERATOR
 const editExpense = (id, updates) => ({
@@ -50,10 +53,13 @@ const editExpense = (id, updates) => ({
 });
 
 // START_EDIT_EXPENSE
-const startEditExpense = (id, updates) => dispatch => database.ref(`expenses/${id}`).update(updates)
-  .then(() => {
-    dispatch(editExpense(id, updates));
-  });
+const startEditExpense = (id, updates) => (dispatch, getState) => {
+  const { uid } = getState().auth;
+  database.ref(`users/${uid}/expenses/${id}`).update(updates)
+    .then(() => {
+      dispatch(editExpense(id, updates));
+    });
+};
 
 // SET_EXPENSES
 const setExpenses = expenses => ({
