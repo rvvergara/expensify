@@ -53,7 +53,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 EditExpense.propTypes = {
-  expense: PropTypes.instanceOf(Object).isRequired,
+  expense: PropTypes.instanceOf(Object),
   startEditExpense: PropTypes.func.isRequired,
   startRemoveExpense: PropTypes.func.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,

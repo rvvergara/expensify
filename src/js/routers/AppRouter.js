@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  BrowserRouter,
+  Router,
   Route,
   Switch,
 } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import Header from '../components/Header';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import AddNewExpensePage from '../components/AddNewExpensePage';
@@ -12,8 +13,12 @@ import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 
+export const history = createBrowserHistory();
+
 export default () => (
-  <BrowserRouter>
+  <Router
+    history={history}
+  >
     <div>
       <Header />
       <Switch>
@@ -25,5 +30,5 @@ export default () => (
         <Route component={NotFoundPage} />
       </Switch>
     </div>
-  </BrowserRouter>
+  </Router>
 );
