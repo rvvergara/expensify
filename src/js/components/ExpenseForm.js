@@ -38,13 +38,15 @@ export default class ExpenseForm extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.error && <div>
-          {this.state.error}
-        </div>}
         <form
+          className="form"
           onSubmit={this.onSubmit}
         >
+          {this.state.error && 
+            <div className="form__error">
+              {this.state.error}
+            </div>
+          }
           <input
             className="text-input"
             type="text"
@@ -77,13 +79,15 @@ export default class ExpenseForm extends React.Component {
             value={this.state.note}
             onChange={(e) => this.handleChange('note', e.target.value)}
           />
-          <button
-            type="submit"
-          >
-            Add Expense
-          </button>
+          <div>
+            <button
+              className="button"
+              type="submit"
+            >
+              Save Expense
+            </button>
+          </div>
         </form>
-      </div>
     );
   }
 }
