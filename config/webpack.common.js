@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: ['babel-polyfill', './src/js/index.js'],
   output: {
     filename: 'js/[name].bundle.js',
     publicPath: '/',
