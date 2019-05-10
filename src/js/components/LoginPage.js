@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { startLogin } from '../actions/auth';
+import { startGithubLogin, startGoogleLogin } from '../actions/auth';
 
-export const LoginPage = ({ startLogin }) => (
+export const LoginPage = ({ startGoogleLogin, startGithubLogin }) => (
   <div className="box-layout">
     <div className="box-layout__box">
       <h1 className="box-layout__title">Expensify</h1>
@@ -11,22 +11,31 @@ export const LoginPage = ({ startLogin }) => (
         Be Financially Wise!
       </p>
       <button
-        className="button"
+        className="button google-login"
         type="button"
-        onClick={startLogin}
+        onClick={startGoogleLogin}
       >
       Login with Google
+      </button>
+      <button
+        className="button github-login"
+        type="button"
+        onClick={startGithubLogin}
+      >
+      Login with Github
       </button>
     </div>
   </div>
 );
 
 LoginPage.propTypes = {
-  startLogin: PropTypes.func.isRequired,
+  startGithubLogin: PropTypes.func.isRequired,
+  startGoogleLogin: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
-  startLogin: () => dispatch(startLogin()),
+  startGithubLogin: () => dispatch(startGithubLogin()),
+  startGoogleLogin: () => dispatch(startGoogleLogin()),
 });
 
 export default connect(null, mapDispatchToProps)(LoginPage);

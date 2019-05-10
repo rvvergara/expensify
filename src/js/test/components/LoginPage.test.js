@@ -4,16 +4,27 @@ import { LoginPage } from '../../components/LoginPage';
 
 describe('LoginPage', () => {
   let wrapper;
-  let startLogin;
+  let startGithubLogin;
+  let startGoogleLogin;
   beforeEach(() => {
-    startLogin = jest.fn();
-    wrapper = shallow(<LoginPage startLogin={startLogin} />);
+    startGithubLogin = jest.fn();
+    startGoogleLogin = jest.fn();
+    wrapper = shallow(
+      <LoginPage
+        startGithubLogin={startGithubLogin}
+        startGoogleLogin={startGoogleLogin}
+      />,
+    );
   });
   test('it should render correctly', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  test('it should call startLogin on button click', () => {
-    wrapper.find('button').simulate('click');
-    expect(startLogin).toHaveBeenCalled();
+  test('it should call startGoogleLogin on button click', () => {
+    wrapper.find('button').at(0).simulate('click');
+    expect(startGoogleLogin).toHaveBeenCalled();
+  });
+  test('it should call startGithublogin on button click', () => {
+    wrapper.find('button').at(1).simulate('click');
+    expect(startGithubLogin).toHaveBeenCalled();
   });
 });
