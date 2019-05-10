@@ -1,8 +1,17 @@
 .button {
-  background: $light-blue;
   border: none;
   color: $off-white;
   font-size: $font-size-large;
   font-weight: 300;
   padding: $s-size;
+  width: 15vw;
+  margin: 0.25rem;
+}
+
+.google-login {
+  background: $light-blue;
+}
+
+.github-login {
+  background: $light-black;
 }
