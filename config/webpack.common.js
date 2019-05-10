@@ -4,7 +4,6 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 if (process.env.NODE_ENV === 'test') {
   require('dotenv').config({ path: '.env.test' });
@@ -72,14 +71,12 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       filename: 'index.html',
+      favicon: path.resolve(__dirname, '../src/public/images/favicon.png'),
       template: path.resolve(__dirname, '../src/public/index.html'),
     }),
     new MiniCssExtractPlugin({
       filename: './css/[name].css',
       chunkFilename: '/css/[id].css',
-    }),
-    new FaviconsWebpackPlugin({
-      logo: path.resolve(__dirname, '../src/public/images/favicon.png'),
     }),
     new webpack.DefinePlugin({
       'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
