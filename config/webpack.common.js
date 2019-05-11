@@ -66,6 +66,15 @@ module.exports = {
           plugins: ['transform-class-properties', '@babel/plugin-transform-runtime'],
         },
       },
+      {
+        test: /\.html$/,
+        use: [{
+          loader: 'html-loader',
+          options: {
+            minimize: true,
+          },
+        }],
+      },
     ],
   },
   plugins: [
