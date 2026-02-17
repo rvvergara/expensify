@@ -44,11 +44,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.2",
-    "express": "^4.17.1",
+    "express": "^4.22.0",
     "firebase": "^5.11.1",
     "history": "^4.10.1",
     "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.9.0",
+    "mini-css-extract-plugin": "^2.4.5",
     "moment": "^2.27.0",
     "normalize.css": "^8.0.1",
     "numeral": "^2.0.6",
@@ -64,7 +64,7 @@
     "react-with-direction": "^1.3.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "terser-webpack-plugin": "^1.4.4",
+    "terser-webpack-plugin": "^5.3.11",
     "uuid": "^3.4.0",
     "webpack-merge": "^4.2.2",
     "snyk": "^1.360.0"
